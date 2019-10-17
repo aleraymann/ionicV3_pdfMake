@@ -1,0 +1,35 @@
+<!--
+  Generated template for the PdfMakePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Gerar Relatório</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Mês de Referência:</ion-label>
+    <ion-select [(ngModel)]="letterObj.month" placeholder="Selecione o mês">
+      <ion-option value="Janeriro">Janeiro</ion-option>
+      <ion-option value="Fevereiro">Fevereiro</ion-option>
+      <ion-option value="Março">Março</ion-option>
+      <ion-option value="Abril">Abril</ion-option>
+      <ion-option value="Maio">Maio</ion-option>
+      <ion-option value="Junho">Junho</ion-option>
+      <ion-option value="Julho">Julho</ion-option>
+      <ion-option value="Agosto">Março</ion-option>
+      <ion-option value="Setembro">Setembro</ion-option>
+      <ion-option value="Outubro">Outubro</ion-option>
+      <ion-option value="Novembro">Novembro</ion-option>
+      <ion-option value="Dezembro">Dezembro</ion-option>
+    </ion-select>
+  </ion-item>
+  <div>
+    <button ion-button full [disabled]="!letterObj.month" (click)="createPdf()">Gerar PDF</button>
+    <button ion-button full (click)="restartFinancial()" color="danger" [disabled]="!pdfObj">Zerar Financeiro</button>
+  </div>
+</ion-content>
