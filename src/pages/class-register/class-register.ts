@@ -59,8 +59,8 @@ export class ClassRegisterPage {
     this.Patients = Object.keys(data).map(i => {
       data[i]._i = i;
       return data[i];
-
     });
+    this.Patients.sort((a, b) => (a.name < b.name) ? -1 : 1);
   }
   //------------------------------------------SAVE_CLASS
   save() {

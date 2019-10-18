@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+
 /**
  * Generated class for the PdfMakePage page.
  *
@@ -34,6 +35,7 @@ export class PdfMakePage {
 
   usuario: any;
   Patients;
+  patient;
 
   totalReceive = 0;
   received = 0;
@@ -70,6 +72,7 @@ export class PdfMakePage {
       .subscribe(data => {
         if (data !== null && data !== undefined) {
           this.ShowPatients(data);
+          this.patient = data;
         }
       })
   }
@@ -77,7 +80,7 @@ export class PdfMakePage {
   ShowPatients(data) {
     this.Patients = Object.keys(data).map(i => {
       data[i]._i = i;
-      console.log(data[i].name, "-", data[i].payment);
+      //console.log(data[i].name, "-", data[i].payment);
       this.dataName = data[i].name;
       this.dataValue = data[i].value_payment;
       this.dataPay = data[i].payment;
@@ -102,8 +105,6 @@ export class PdfMakePage {
         { text: 'De:', style: 'subheader' },
         { text: 'AgendApp' },
         this.usuario.email,
-        //{ text: 'Mês de Referência:', style: 'subheader' },
-        //this.letterObj.month,
         { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
 
         [
@@ -113,16 +114,18 @@ export class PdfMakePage {
           '--------------------------------',
           'Total a Receber: ' + this.totalReceive,
           '---------------------------------',
-        
+
+          //this.Patients.forEach (data [this.dataName, Patients);  
+          /*this.patient.forEach(element => {
+            console.log(element.name, element.payment)
+            return element.name;
+          })*/
+          
+
           this.dataName + ": " + this.dataValue + " - " + (this.dataPay != false ? 'Pago' : 'Em Aberto'),
 
-
-          // this.patient = JSON.stringify(this.Patients)
-          /*this.Patients = Object.keys(data).map(i => {
-            data[i]._i = i;
-            return JSON.stringify(data[i].name);
-          })*/
-
+         
+          
 
         ]
 

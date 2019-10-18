@@ -300,6 +300,7 @@ var ClassRegisterPage = /** @class */ (function () {
             data[i]._i = i;
             return data[i];
         });
+        this.Patients.sort(function (a, b) { return (a.name < b.name) ? -1 : 1; });
     };
     //------------------------------------------SAVE_CLASS
     ClassRegisterPage.prototype.save = function () {

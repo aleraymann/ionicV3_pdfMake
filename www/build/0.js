@@ -117,6 +117,7 @@ var PdfMakePage = /** @class */ (function () {
             .subscribe(function (data) {
             if (data !== null && data !== undefined) {
                 _this.ShowPatients(data);
+                _this.patient = data;
             }
         });
     };
@@ -125,7 +126,7 @@ var PdfMakePage = /** @class */ (function () {
         var _this = this;
         this.Patients = Object.keys(data).map(function (i) {
             data[i]._i = i;
-            console.log(data[i].name, "-", data[i].payment);
+            //console.log(data[i].name, "-", data[i].payment);
             _this.dataName = data[i].name;
             _this.dataValue = data[i].value_payment;
             _this.dataPay = data[i].payment;
@@ -150,8 +151,6 @@ var PdfMakePage = /** @class */ (function () {
                 { text: 'De:', style: 'subheader' },
                 { text: 'AgendApp' },
                 this.usuario.email,
-                //{ text: 'Mês de Referência:', style: 'subheader' },
-                //this.letterObj.month,
                 { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
                 [
                     'Total Recebido: ' + this.received,
@@ -160,6 +159,11 @@ var PdfMakePage = /** @class */ (function () {
                     '--------------------------------',
                     'Total a Receber: ' + this.totalReceive,
                     '---------------------------------',
+                    //this.Patients.forEach (data [this.dataName, Patients);  
+                    /*this.patient.forEach(element => {
+                      console.log(element.name, element.payment)
+                      return element.name;
+                    })*/
                     this.dataName + ": " + this.dataValue + " - " + (this.dataPay != false ? 'Pago' : 'Em Aberto'),
                 ]
             ],
@@ -240,10 +244,17 @@ var PdfMakePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'page-pdf-make',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AgendApp_PDFMake/src/pages/pdf-make/pdf-make.html"*/'<!--\n  Generated template for the PdfMakePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Gerar Relatório</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-item>\n    <ion-label stacked>Mês de Referência:</ion-label>\n    <ion-select [(ngModel)]="letterObj.month" placeholder="Selecione o mês">\n      <ion-option value="Janeriro">Janeiro</ion-option>\n      <ion-option value="Fevereiro">Fevereiro</ion-option>\n      <ion-option value="Março">Março</ion-option>\n      <ion-option value="Abril">Abril</ion-option>\n      <ion-option value="Maio">Maio</ion-option>\n      <ion-option value="Junho">Junho</ion-option>\n      <ion-option value="Julho">Julho</ion-option>\n      <ion-option value="Agosto">Março</ion-option>\n      <ion-option value="Setembro">Setembro</ion-option>\n      <ion-option value="Outubro">Outubro</ion-option>\n      <ion-option value="Novembro">Novembro</ion-option>\n      <ion-option value="Dezembro">Dezembro</ion-option>\n    </ion-select>\n  </ion-item>\n  <div>\n    <button ion-button full [disabled]="!letterObj.month" (click)="createPdf()">Gerar PDF</button>\n    <button ion-button full (click)="restartFinancial()" color="danger" [disabled]="!pdfObj">Zerar Financeiro</button>\n  </div>\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AgendApp_PDFMake/src/pages/pdf-make/pdf-make.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_opener__["a" /* FileOpener */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_opener__["a" /* FileOpener */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["AngularFireDatabase"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["AngularFireDatabase"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _j || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_file_opener__["a" /* FileOpener */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_9_angularfire2_database__["AngularFireDatabase"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
     ], PdfMakePage);
     return PdfMakePage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=pdf-make.js.map

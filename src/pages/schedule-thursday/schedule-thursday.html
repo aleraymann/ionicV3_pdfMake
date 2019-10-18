@@ -21,10 +21,18 @@
           <ion-icon color="success" item-right [name]="isGroupShown(i) ? 'arrow-dropdown' : 'arrow-dropright'">
           </ion-icon>
         </h3>
-        <div *ngIf="isGroupShown(i)">1: {{c.p1}}</div>
-        <div *ngIf="isGroupShown(i)">2: {{c.p2}}</div>
-        <div *ngIf="isGroupShown(i)">3: {{c.p3}}</div>
-        <div *ngIf="isGroupShown(i)">4: {{c.p4}}</div>
+        <div *ngIf="isGroupShown(i)">
+          <ion-label>{{c.p1}} </ion-label>
+        </div>
+        <div *ngIf="isGroupShown(i)">
+          <ion-label> {{c.p2}} </ion-label>
+        </div>
+        <div *ngIf="isGroupShown(i)">
+          <ion-label> {{c.p3}} </ion-label>
+        </div>
+        <div *ngIf="isGroupShown(i)">
+          <ion-label> {{c.p4}} </ion-label>
+        </div>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="light" (click)="editClass(c._i,c.day,c.hour,c.p1,c.p2,c.p3,c.p4)">
