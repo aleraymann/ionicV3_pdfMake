@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, ToastController} from 'ionic-angular';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -121,7 +121,7 @@ export class PdfMakePage {
             return element.name;
           })*/
           
-
+        'Pacientes: ',
           this.dataName + ": " + this.dataValue + " - " + (this.dataPay != false ? 'Pago' : 'Em Aberto'),
 
          

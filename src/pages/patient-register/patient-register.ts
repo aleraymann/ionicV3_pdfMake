@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController,ToastController } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AngularFireDatabase } from '@angular/fire/database';
+import firebase from "firebase";
 
 /**
  * Generated class for the PatientRegisterPage page.
@@ -18,9 +19,12 @@ import {AngularFireDatabase } from '@angular/fire/database';
 export class PatientRegisterPage {
 
   PatientForm: FormGroup;
+  private user: string;
+ 
   
   public event = {
-    month: new Date().toISOString(),
+    month: new Date().toLocaleDateString(),
+ 
 
   }
 
@@ -31,16 +35,19 @@ export class PatientRegisterPage {
     public toastCtrl: ToastController, 
     private formBuilder: FormBuilder,
     public db: AngularFireDatabase) {
+    
+    this.user = firebase.auth().currentUser.uid;
+
 
      this.PatientForm = this.formBuilder.group({
       name: [null,[Validators.required, Validators.minLength(5)]],
       email: [null],
       phone: [null,[Validators.required]],
-      cpf: [null,[Validators.required]],
+      //cpf: [null,[Validators.required]],
       value_payment: [null,[Validators.required]],
       begin: [null,[Validators.required]],
       payment:[false],
-
+      owner:[this.user],
      })
   }
 
@@ -62,5 +69,4 @@ export class PatientRegisterPage {
       
     })
     }
-  
 }

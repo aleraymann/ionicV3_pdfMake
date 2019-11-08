@@ -29,7 +29,8 @@
         "@ionic/storage": "2.2.0",
         "angularfire2": "^5.2.1",
         "brmasker-ionic-3": "^1.6.3",
-        "cordova-android": "^6.2.3",
+        "cordova-android": "8.1.0",
+        "cordova-android-support-gradle-release": "^3.0.1",
         "cordova-plugin-device": "^2.0.2",
         "cordova-plugin-file": "^6.0.2",
         "cordova-plugin-file-opener2": "^2.2.1",
@@ -60,7 +61,10 @@
             "cordova-plugin-ionic-webview": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-android-support-gradle-release": {
+                "ANDROID_SUPPORT_VERSION": "27.+"
+            }
         },
         "platforms": [
             "android"

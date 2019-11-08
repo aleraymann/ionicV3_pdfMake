@@ -29,7 +29,7 @@
               <ion-row>
                 <ion-col>
                   <div>
-                    <button ion-button icon-start small color="secondary" (click)="payment(p._i,p.name,p.cpf,p.email,p.phone, p.begin,p.value_payment,p.payment)"
+                    <button ion-button icon-start small color="secondary" (click)="payment(p._i,p.name,p.email,p.phone, p.begin,p.value_payment,p.payment)"
                       [disabled]="p.payment == true">
                       <ion-icon name="logo-usd"></ion-icon>
                       Pagar
@@ -50,7 +50,7 @@
         </ion-item>
         <ion-item-options side="right">
           <button ion-button color="light"
-            (click)=" editPatient(p._i,p.name,p.cpf,p.email,p.phone, p.begin,p.value_payment,p.payment)">
+            (click)=" editPatient(p._i,p.name,p.email,p.phone, p.begin,p.value_payment,p.payment)">
             <ion-icon name="create"></ion-icon>
           </button>
           <button ion-button color="danger" (click)="delPatient(p._i)">

@@ -8,6 +8,7 @@ import { PatientRegisterPage } from '../patient-register/patient-register';
 
 
 
+
 /**
  * Generated class for the PatientPage page.
  *
@@ -26,11 +27,10 @@ export class PatientPage {
   Patients;
 
   shownGroup = null;
-
+  
   patient = {
     _i: '',
     name: '',
-    cpf: '',
     email: '',
     phone: '',
     begin: '',
@@ -47,6 +47,7 @@ export class PatientPage {
     public db: AngularFireDatabase,
   ) {
     this.Patients = [];
+
 
 
 
@@ -102,7 +103,7 @@ export class PatientPage {
 
   }
   //---------------------------------------------------PAYMENT_ALERT
-  payment(_i, name, cpf, email, phone, begin, value_payment, payment) {
+  payment(_i, name, email, phone, begin, value_payment, payment) {
     const confirm = this.alertCtrl.create({
       title: 'Confirmar Pagamento',
       buttons: [
@@ -118,7 +119,6 @@ export class PatientPage {
             this.db.database.ref('patients/' + _i).update({
               _i: _i,
               name: name,
-              cpf: cpf,
               email: email,
               phone: phone,
               begin: begin,
@@ -169,12 +169,11 @@ export class PatientPage {
   }
 
   //---------------------------------------------------PATIENT_EDIT
-  editPatient(_i, name, cpf, email, phone, begin, value_payment, payment) {
+  editPatient(_i, name, email, phone, begin, value_payment, payment) {
 
     this.navCtrl.push('EditPatientPage', {
       _i: _i,
       name: name,
-      cpf: cpf,
       email: email,
       phone: phone,
       begin: begin,

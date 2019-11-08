@@ -24,7 +24,6 @@ export class EditPatientPage {
   patient = {
     _i: '',
     name: '',
-    cpf: '',
     email: '',
     phone: '',
     begin: '',
@@ -49,7 +48,6 @@ export class EditPatientPage {
     this.Patients = db.list('/patients');
     this.patient._i = this.navParams.get('_i');
     this.patient.name = this.navParams.get('name');
-    this.patient.cpf = this.navParams.get('cpf');
     this.patient.email = this.navParams.get('email');
     this.patient.phone = this.navParams.get('phone');
     this.patient.begin = this.navParams.get('begin');
@@ -61,7 +59,6 @@ export class EditPatientPage {
       name: [this.navParams.get('name')],
       email: [this.navParams.get('email')],
       phone: [this.navParams.get('phone')],
-      cpf: [this.navParams.get('cpf')],
       value_payment: [this.navParams.get('value_payment')],
       begin: [this.navParams.get('begin')],
       payment: [this.navParams.get('payment')]

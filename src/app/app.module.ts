@@ -24,13 +24,7 @@ import { FileOpener } from '@ionic-native/file-opener';
 
 
 const firebaseAuth = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  
 };
 
 
