@@ -4,150 +4,6 @@ webpackJsonp([16],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams, fire, toastCtrl, alertCtrl, menu) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.fire = fire;
-        this.toastCtrl = toastCtrl;
-        this.alertCtrl = alertCtrl;
-        this.menu = menu;
-    }
-    //---------------------------------------------- SIDE_MENU
-    LoginPage.prototype.ionViewDidEnter = function () {
-        this.menu.enable(false);
-    };
-    LoginPage.prototype.ionViewWillLeave = function () {
-        this.menu.enable(true);
-    };
-    //----------------------------------------------Alert
-    LoginPage.prototype.alert = function (message) {
-        this.alertCtrl.create({
-            title: 'Aviso',
-            subTitle: message,
-            buttons: ['OK']
-        }).present();
-    };
-    LoginPage.prototype.goUserRegister = function () {
-        this.navCtrl.push('UserRegisterPage');
-    };
-    //----------------------------------------------LOGIN_PASS
-    LoginPage.prototype.logar = function () {
-        var _this = this;
-        this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
-            .then(function (data) {
-            console.log('data', data);
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
-            var toast = _this.toastCtrl.create({
-                message: 'Bem Vindo!',
-                duration: 3000
-            });
-            toast.present();
-        })
-            .catch(function (error) {
-            if (error.code == 'auth/invalid-email') {
-                _this.alert("E-mail inválido");
-            }
-            else if (error.code == 'auth/user-disabled') {
-                _this.alert("Usuário Desativado");
-            }
-            else if (error.code == 'auth/user-not-found') {
-                _this.alert("Usuário Não Encontrado.");
-            }
-            else if (error.code == 'auth/wrong-password') {
-                _this.alert("Senha Incorreta.");
-            }
-        });
-    };
-    //---------------------------------------------- LOGIN_Google
-    LoginPage.prototype.logarComGoogle = function () {
-        var _this = this;
-        this.fire.auth.signInWithPopup(new __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth.GoogleAuthProvider())
-            .then(function (res) {
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
-            var toast = _this.toastCtrl.create({
-                message: 'Bem Vindo!',
-                duration: 3000
-            });
-            toast.present();
-        });
-    };
-    //---------------------------------------------- Reset_Password
-    LoginPage.prototype.resetPassword = function () {
-        if (this.user.value != "") {
-            var auth = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth();
-            var emailAddress = this.user.value;
-            var toast = this.toastCtrl.create({
-                message: 'Email Enviado!',
-                duration: 3000
-            });
-            toast.present();
-            auth.sendPasswordResetEmail(emailAddress).then(function () {
-            }).catch(function (error) {
-            });
-        }
-        else {
-            this.alert("Informe seu Email para redefinição de senha!");
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('username'),
-        __metadata("design:type", Object)
-    ], LoginPage.prototype, "user", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('password'),
-        __metadata("design:type", Object)
-    ], LoginPage.prototype, "password", void 0);
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n\n  </ion-list>\n  <button ion-button full (click)="logar()">Entrar\n  </button>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div></div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small icon-end (click)="logarComGoogle()">\n            Login com\n            <ion-icon name="logo-google"></ion-icon>\n          </button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div></div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="resetPassword()">Esqueci a senha!</button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="goUserRegister()" outline>Cadastrar-me</button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["AngularFireAuth"],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 164:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatientRegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
@@ -231,6 +87,150 @@ var PatientRegisterPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=patient-register.js.map
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, fire, toastCtrl, alertCtrl, menu) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.fire = fire;
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.menu = menu;
+    }
+    //---------------------------------------------- SIDE_MENU
+    LoginPage.prototype.ionViewDidEnter = function () {
+        this.menu.enable(false);
+    };
+    LoginPage.prototype.ionViewWillLeave = function () {
+        this.menu.enable(true);
+    };
+    //----------------------------------------------Alert
+    LoginPage.prototype.alert = function (message) {
+        this.alertCtrl.create({
+            title: 'Aviso',
+            subTitle: message,
+            buttons: ['OK']
+        }).present();
+    };
+    LoginPage.prototype.goUserRegister = function () {
+        this.navCtrl.push('UserRegisterPage');
+    };
+    //----------------------------------------------LOGIN_PASS
+    LoginPage.prototype.logar = function () {
+        var _this = this;
+        this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
+            .then(function (data) {
+            console.log('data', data);
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+            var toast = _this.toastCtrl.create({
+                message: 'Bem Vindo!',
+                duration: 3000
+            });
+            toast.present();
+        })
+            .catch(function (error) {
+            if (error.code == 'auth/invalid-email') {
+                _this.alert("E-mail inválido");
+            }
+            else if (error.code == 'auth/user-disabled') {
+                _this.alert("Usuário Desativado");
+            }
+            else if (error.code == 'auth/user-not-found') {
+                _this.alert("Usuário Não Encontrado.");
+            }
+            else if (error.code == 'auth/wrong-password') {
+                _this.alert("Senha Incorreta.");
+            }
+        });
+    };
+    /*
+    //---------------------------------------------- LOGIN_Google
+    logarComGoogle() {
+      this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(res => {
+          this.navCtrl.setRoot(HomePage);
+          const toast = this.toastCtrl.create({
+            message: 'Bem Vindo!',
+            duration: 3000
+          });
+          toast.present();
+        })
+    }*/
+    //---------------------------------------------- Reset_Password
+    LoginPage.prototype.resetPassword = function () {
+        if (this.user.value != "") {
+            var auth = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth();
+            var emailAddress = this.user.value;
+            var toast = this.toastCtrl.create({
+                message: 'Email Enviado!',
+                duration: 3000
+            });
+            toast.present();
+            auth.sendPasswordResetEmail(emailAddress).then(function () {
+            }).catch(function (error) {
+            });
+        }
+        else {
+            this.alert("Informe seu Email para redefinição de senha!");
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('username'),
+        __metadata("design:type", Object)
+    ], LoginPage.prototype, "user", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('password'),
+        __metadata("design:type", Object)
+    ], LoginPage.prototype, "password", void 0);
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n\n  </ion-list>\n  <button ion-button full (click)="logar()">Entrar\n  </button>\n\n  <br><hr>\n  <!--<ion-grid>\n    <ion-row>\n      <ion-col>\n        <div></div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small icon-end (click)="logarComGoogle()">\n            Login com\n            <ion-icon name="logo-google"></ion-icon>\n          </button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div></div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>-->\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="resetPassword()">Esqueci a senha!</button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="goUserRegister()" outline>Cadastrar-me</button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["AngularFireAuth"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
 
 /***/ }),
 
@@ -379,11 +379,11 @@ var map = {
 		9
 	],
 	"../pages/login/login.module": [
-		731,
+		732,
 		14
 	],
 	"../pages/patient-register/patient-register.module": [
-		732,
+		731,
 		13
 	],
 	"../pages/patient/patient.module": [
@@ -399,23 +399,23 @@ var map = {
 		0
 	],
 	"../pages/reminder/reminder.module": [
-		742,
+		736,
 		12
 	],
 	"../pages/schedule-friday/schedule-friday.module": [
-		736,
+		737,
 		6
 	],
 	"../pages/schedule-monday/schedule-monday.module": [
-		737,
+		738,
 		5
 	],
 	"../pages/schedule-thursday/schedule-thursday.module": [
-		738,
+		739,
 		4
 	],
 	"../pages/schedule-tuesday/schedule-tuesday.module": [
-		739,
+		740,
 		3
 	],
 	"../pages/schedule-wednesday/schedule-wednesday.module": [
@@ -423,7 +423,7 @@ var map = {
 		2
 	],
 	"../pages/user-register/user-register.module": [
-		740,
+		742,
 		1
 	]
 };
@@ -468,10 +468,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(722);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_class_register_class_register__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_patient_register_patient_register__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_patient_register_patient_register__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2__ = __webpack_require__(723);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2_auth__ = __webpack_require__(167);
@@ -537,18 +537,18 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/edit-class/edit-class.module#EditClassPageModule', name: 'EditClassPage', segment: 'edit-class', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-patient/edit-patient.module#EditPatientPageModule', name: 'EditPatientPage', segment: 'edit-patient', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/finantial/finantial.module#FinantialPageModule', name: 'FinantialPage', segment: 'finantial', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/patient-register/patient-register.module#PatientRegisterPageModule', name: 'PatientRegisterPage', segment: 'patient-register', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/patient/patient.module#PatientPageModule', name: 'PatientPage', segment: 'patient', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/payment-slip/payment-slip.module#PaymentSlipPageModule', name: 'PaymentSlipPage', segment: 'payment-slip', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pdf-make/pdf-make.module#PdfMakePageModule', name: 'PdfMakePage', segment: 'pdf-make', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reminder/reminder.module#ReminderPageModule', name: 'ReminderPage', segment: 'reminder', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-friday/schedule-friday.module#ScheduleFridayPageModule', name: 'ScheduleFridayPage', segment: 'schedule-friday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-monday/schedule-monday.module#ScheduleMondayPageModule', name: 'ScheduleMondayPage', segment: 'schedule-monday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-thursday/schedule-thursday.module#ScheduleThursdayPageModule', name: 'ScheduleThursdayPage', segment: 'schedule-thursday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-tuesday/schedule-tuesday.module#ScheduleTuesdayPageModule', name: 'ScheduleTuesdayPage', segment: 'schedule-tuesday', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-register/user-register.module#UserRegisterPageModule', name: 'UserRegisterPage', segment: 'user-register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-wednesday/schedule-wednesday.module#ScheduleWednesdayPageModule', name: 'ScheduleWednesdayPage', segment: 'schedule-wednesday', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reminder/reminder.module#ReminderPageModule', name: 'ReminderPage', segment: 'reminder', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-register/user-register.module#UserRegisterPageModule', name: 'UserRegisterPage', segment: 'user-register', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["b" /* HttpModule */],
@@ -660,8 +660,8 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_patient_register_patient_register__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_patient_register_patient_register__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_reminder_reminder__ = __webpack_require__(97);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

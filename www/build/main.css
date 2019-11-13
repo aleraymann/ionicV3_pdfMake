@@ -25725,6 +25725,16 @@ page-home .foto {
   border-radius: 50%;
 }
 
+page-login img {
+  margin-bottom: 5vh;
+  margin-top: 5vh;
+}
+
 page-patient .scroll-content {
   background-color: #e0e0e0;
+}
+
+page-user-register img {
+  margin-bottom: 5vh;
+  margin-top: 5vh;
 }

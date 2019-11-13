@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 740:
+/***/ 742:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserRegisterPageModule", function() { return UserRegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_register__ = __webpack_require__(755);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_register__ = __webpack_require__(756);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var UserRegisterPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 755:
+/***/ 756:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47,7 +47,7 @@ var UserRegisterPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -85,36 +85,45 @@ var UserRegisterPage = /** @class */ (function () {
     //----------------------------------------------Register
     UserRegisterPage.prototype.registrar = function () {
         var _this = this;
-        this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
-            .then(function (data) {
-            var user = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser;
-            user.sendEmailVerification().then(function () {
-                // Email sent.
-            }).catch(function (error) {
-                // An error happened.
+        if (this.password.value != this.passwordConf.value) {
+            this.alertCtrl.create({
+                title: 'Aviso',
+                subTitle: 'Senhas nao conferem',
+                buttons: ['OK']
+            }).present();
+        }
+        else {
+            this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
+                .then(function (data) {
+                var user = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser;
+                user.sendEmailVerification().then(function () {
+                    // Email sent.
+                }).catch(function (error) {
+                    // An error happened.
+                });
+                console.log('data', data);
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+                var toast = _this.toastCtrl.create({
+                    message: 'Registrado com sucesso!',
+                    duration: 3000
+                });
+                toast.present();
+            })
+                .catch(function (error) {
+                if (error.code == 'auth/email-already-in-use') {
+                    _this.alert("E-mail já cadastrado");
+                }
+                else if (error.code == 'auth/invalid-email') {
+                    _this.alert("E-mail inválido");
+                }
+                else if (error.code == 'auth/operation-not-allowed') {
+                    _this.alert("A conta precisa ser ativada.");
+                }
+                else if (error.code == 'auth/weak-password') {
+                    _this.alert("A senha é muito fraca");
+                }
             });
-            console.log('data', data);
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
-            var toast = _this.toastCtrl.create({
-                message: 'Registrado com sucesso!',
-                duration: 3000
-            });
-            toast.present();
-        })
-            .catch(function (error) {
-            if (error.code == 'auth/email-already-in-use') {
-                _this.alert("E-mail já cadastrado");
-            }
-            else if (error.code == 'auth/invalid-email') {
-                _this.alert("E-mail inválido");
-            }
-            else if (error.code == 'auth/operation-not-allowed') {
-                _this.alert("A conta precisa ser ativada.");
-            }
-            else if (error.code == 'auth/weak-password') {
-                _this.alert("A senha é muito fraca");
-            }
-        });
+        }
     };
     //----------------------------------------------Alert
     UserRegisterPage.prototype.alert = function (message) {
@@ -132,9 +141,13 @@ var UserRegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('password'),
         __metadata("design:type", Object)
     ], UserRegisterPage.prototype, "password", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('passwordConf'),
+        __metadata("design:type", Object)
+    ], UserRegisterPage.prototype, "passwordConf", void 0);
     UserRegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-user-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/user-register/user-register.html"*/'<!--\n  Generated template for the UserRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Cadastro de Usuário</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <div padding>\n      <button block ion-button (click)="registrar()" item-left>Registrar</button>\n    </div>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/user-register/user-register.html"*/,
+            selector: 'page-user-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/user-register/user-register.html"*/'<!--\n  Generated template for the UserRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Cadastro de Usuário</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Confirmar Senha</ion-label>\n      <ion-input type="password" #passwordConf></ion-input>\n    </ion-item>\n    <div padding>\n      <button block ion-button (click)="registrar()" item-left>Registrar</button>\n    </div>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/user-register/user-register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__["AngularFireAuth"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
     ], UserRegisterPage);
