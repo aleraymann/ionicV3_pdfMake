@@ -4,96 +4,6 @@ webpackJsonp([16],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatientRegisterPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_fire_database__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the PatientRegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var PatientRegisterPage = /** @class */ (function () {
-    function PatientRegisterPage(navCtrl, navParams, alertCtrl, toastCtrl, formBuilder, db) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.alertCtrl = alertCtrl;
-        this.toastCtrl = toastCtrl;
-        this.formBuilder = formBuilder;
-        this.db = db;
-        this.event = {
-            month: new Date().toLocaleDateString(),
-        };
-        this.user = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser.uid;
-        this.PatientForm = this.formBuilder.group({
-            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(5)]],
-            email: [null],
-            phone: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
-            //cpf: [null,[Validators.required]],
-            value_payment: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
-            begin: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
-            payment: [false],
-            owner: [this.user],
-        });
-    }
-    PatientRegisterPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PatientRegisterPage');
-    };
-    //------------------------------------------------SAVE_PATIENTS
-    PatientRegisterPage.prototype.save = function () {
-        var _this = this;
-        this.db.database.ref('/patients').push(this.PatientForm.value)
-            .then(function () {
-            console.log("salvou");
-            _this.PatientForm.reset();
-            _this.navCtrl.setRoot('PatientPage');
-            var toast = _this.toastCtrl.create({
-                message: 'Paciente Cadastrado',
-                duration: 3000
-            });
-            toast.present();
-        });
-    };
-    PatientRegisterPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-patient-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/patient-register/patient-register.html"*/'<!--\n  Generated template for the PatientRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Novo Paciente</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="PatientForm">\n    <ion-list>\n      <ion-item>\n        <ion-label floating>Nome</ion-label>\n        <ion-input type="text" formControlName="name"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label floating>E-mail</ion-label>\n        <ion-input type="email" formControlName="email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Telefone</ion-label>\n        <ion-input type="text" formControlName="phone"[brmasker]="{mask:\'(00)00000-0000\', len:14}"></ion-input>\n      </ion-item>\n\n      <!--<ion-item>\n        <ion-label floating>CPF</ion-label>\n        <ion-input type="text" formControlName="cpf"[brmasker]="{mask:\'000.000.000-00\', len:14}"></ion-input>\n      </ion-item>-->\n  \n      <ion-item>\n        <ion-label floating>Valor Mensalidade</ion-label>\n        <ion-input type="number" formControlName="value_payment" [brmasker]="{mask:\'000.00\', len:6}"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label>Início</ion-label>\n        <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="event.month" type="date" formControlName="begin">\n        </ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label>Pagamento</ion-label>\n        <ion-toggle checked="true" formControlName="payment"></ion-toggle>\n      </ion-item>\n    </ion-list>\n    <div padding>\n      <button ion-button block type="submit" [disabled]="!PatientForm.valid" (click)="save()">Cadastrar</button>\n    </div>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/patient-register/patient-register.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_fire_database__["AngularFireDatabase"]])
-    ], PatientRegisterPage);
-    return PatientRegisterPage;
-}());
-
-//# sourceMappingURL=patient-register.js.map
-
-/***/ }),
-
-/***/ 164:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
@@ -177,19 +87,19 @@ var LoginPage = /** @class */ (function () {
             }
         });
     };
-    /*
     //---------------------------------------------- LOGIN_Google
-    logarComGoogle() {
-      this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then(res => {
-          this.navCtrl.setRoot(HomePage);
-          const toast = this.toastCtrl.create({
-            message: 'Bem Vindo!',
-            duration: 3000
-          });
-          toast.present();
-        })
-    }*/
+    LoginPage.prototype.logarComGoogle = function () {
+        var _this = this;
+        this.fire.auth.signInWithPopup(new __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth.GoogleAuthProvider())
+            .then(function (res) {
+            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+            var toast = _this.toastCtrl.create({
+                message: 'Bem Vindo!',
+                duration: 3000
+            });
+            toast.present();
+        });
+    };
     //---------------------------------------------- Reset_Password
     LoginPage.prototype.resetPassword = function () {
         if (this.user.value != "") {
@@ -218,7 +128,7 @@ var LoginPage = /** @class */ (function () {
     ], LoginPage.prototype, "password", void 0);
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n\n  </ion-list>\n  <button ion-button full (click)="logar()">Entrar\n  </button>\n\n  <br><hr>\n  <!--<ion-grid>\n    <ion-row>\n      <ion-col>\n        <div></div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small icon-end (click)="logarComGoogle()">\n            Login com\n            <ion-icon name="logo-google"></ion-icon>\n          </button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div></div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>-->\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="resetPassword()">Esqueci a senha!</button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="goUserRegister()" outline>Cadastrar-me</button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/'<ion-header>\n\n</ion-header>\n\n<ion-content padding>\n  <img src="assets/imgs/agendapp.png" />\n  <ion-list>\n\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="text" #username></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Senha</ion-label>\n      <ion-input type="password" #password></ion-input>\n    </ion-item>\n\n  </ion-list>\n  <button ion-button full (click)="logar()">Entrar\n  </button>\n\n  <br><hr>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div></div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small icon-end (click)="logarComGoogle()">\n            Login com\n            <ion-icon name="logo-google"></ion-icon>\n          </button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div></div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="resetPassword()">Esqueci a senha!</button>\n        </div>\n      </ion-col>\n      <ion-col>\n        <div>\n          <button ion-button small (click)="goUserRegister()" outline>Cadastrar-me</button>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n\n\n\n\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -231,6 +141,95 @@ var LoginPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PatientRegisterPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_fire_database__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the PatientRegisterPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PatientRegisterPage = /** @class */ (function () {
+    function PatientRegisterPage(navCtrl, navParams, alertCtrl, toastCtrl, formBuilder, db) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.formBuilder = formBuilder;
+        this.db = db;
+        this.event = {
+            month: new Date().toLocaleDateString(),
+        };
+        this.user = __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().currentUser.uid;
+        this.PatientForm = this.formBuilder.group({
+            name: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required, __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].minLength(5)]],
+            email: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].email]],
+            phone: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
+            value_payment: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
+            begin: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
+            payment: [false],
+            owner: [this.user],
+        });
+    }
+    PatientRegisterPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PatientRegisterPage');
+    };
+    //------------------------------------------------SAVE_PATIENTS
+    PatientRegisterPage.prototype.save = function () {
+        var _this = this;
+        this.db.database.ref('/patients').push(this.PatientForm.value)
+            .then(function () {
+            console.log("salvou");
+            _this.PatientForm.reset();
+            _this.navCtrl.setRoot('PatientPage');
+            var toast = _this.toastCtrl.create({
+                message: 'Paciente Cadastrado',
+                duration: 3000
+            });
+            toast.present();
+        });
+    };
+    PatientRegisterPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'page-patient-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/patient-register/patient-register.html"*/'<!--\n  Generated template for the PatientRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Novo Paciente</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="PatientForm">\n    <ion-list>\n      <ion-item>\n        <ion-label floating>Nome</ion-label>\n        <ion-input type="text" formControlName="name"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label floating>E-mail</ion-label>\n        <ion-input type="email" formControlName="email"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Telefone</ion-label>\n        <ion-input type="tel" formControlName="phone" \n        [brmasker]="{mask:\'(00)00000-0000\', len:14, type:\'num\'}"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Valor Mensalidade</ion-label>\n        <ion-input type="number" formControlName="value_payment" [brmasker]="{mask:\'000.00\', len:6}"></ion-input>\n      </ion-item>\n\n\n      <ion-item>\n        <ion-label>Início</ion-label>\n        <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="event.month" type="date" formControlName="begin">\n        </ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label>Pagamento</ion-label>\n        <ion-toggle checked="true" formControlName="payment"></ion-toggle>\n      </ion-item>\n    </ion-list>\n    <div padding>\n      <button ion-button block type="submit" [disabled]="!PatientForm.valid" (click)="save()">Cadastrar</button>\n    </div>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/patient-register/patient-register.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_fire_database__["AngularFireDatabase"]])
+    ], PatientRegisterPage);
+    return PatientRegisterPage;
+}());
+
+//# sourceMappingURL=patient-register.js.map
 
 /***/ }),
 
@@ -277,8 +276,8 @@ var ClassRegisterPage = /** @class */ (function () {
         this.db = db;
         this.http = http;
         this.ClassForm = this.formBuilder.group({
-            day: [false],
-            hour: [],
+            day: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
+            hour: [null, [__WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required]],
             p1: [null],
             p2: [null],
             p3: [null],
@@ -324,7 +323,7 @@ var ClassRegisterPage = /** @class */ (function () {
     };
     ClassRegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'page-class-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/class-register/class-register.html"*/'<!--\n  Generated template for the ClassRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Nova Turma</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="ClassForm">\n    <ion-list>\n      <h4>Dia</h4>\n      <ion-select interface="popover" formControlName="day" placeholder="Selecione o dia">\n        <ion-option value="monday">Segunda-Feira</ion-option>\n        <ion-option value="tuesday">Terça-Feira</ion-option>\n        <ion-option value="wednesday">Quarta-Feira</ion-option>\n        <ion-option value="thursday">Quinta-Feira</ion-option>\n        <ion-option value="friday">Sexta-Feira</ion-option>\n      </ion-select>\n      <hr>\n      <ion-item>\n        <ion-label>Horário</ion-label>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="hour"></ion-datetime>">\n      </ion-item>\n\n      <div>\n        <h4>Pacientes</h4>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p1" placeholder="1º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p2" placeholder="2º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p3" placeholder="3º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p4" placeholder="4º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n\n\n    </ion-list>\n    <div padding>\n      <button ion-button block type="submit" (click)="save()">Salvar</button>\n    </div>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/class-register/class-register.html"*/,
+            selector: 'page-class-register',template:/*ion-inline-start:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/class-register/class-register.html"*/'<!--\n  Generated template for the ClassRegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>Nova Turma</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form [formGroup]="ClassForm">\n    <ion-list>\n        <h4>Dia</h4>\n      <ion-item>\n        <ion-select interface="popover" formControlName="day" placeholder="Selecione o dia">\n          <ion-option value="monday">Segunda-Feira</ion-option>\n          <ion-option value="tuesday">Terça-Feira</ion-option>\n          <ion-option value="wednesday">Quarta-Feira</ion-option>\n          <ion-option value="thursday">Quinta-Feira</ion-option>\n          <ion-option value="friday">Sexta-Feira</ion-option>\n        </ion-select>\n      </ion-item>\n      \n      <h4>Horário</h4>\n      <ion-item>\n        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Selecione o horario"formControlName="hour"></ion-datetime>">\n      </ion-item>\n      <hr>\n      <div>\n        <h4>Pacientes</h4>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p1" placeholder="1º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p2" placeholder="2º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p3" placeholder="3º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n        <ion-item>\n          <ion-select interface="popover" formControlName="p4" placeholder="4º Paciente">\n            <ion-option value="">...</ion-option>\n            <ion-option full *ngFor="let p of Patients" value="{{ p.name }}">\n              {{ p.name }}\n            </ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n\n\n    </ion-list>\n    <div padding>\n      <button ion-button block type="submit" [disabled]="!ClassForm.valid" (click)="save()">Salvar</button>\n    </div>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/aleraymann/Documentos/ionic-workspace/AngendApp_pdf2/src/pages/class-register/class-register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
@@ -379,11 +378,11 @@ var map = {
 		9
 	],
 	"../pages/login/login.module": [
-		732,
+		731,
 		14
 	],
 	"../pages/patient-register/patient-register.module": [
-		731,
+		732,
 		13
 	],
 	"../pages/patient/patient.module": [
@@ -395,11 +394,11 @@ var map = {
 		7
 	],
 	"../pages/pdf-make/pdf-make.module": [
-		735,
+		736,
 		0
 	],
 	"../pages/reminder/reminder.module": [
-		736,
+		735,
 		12
 	],
 	"../pages/schedule-friday/schedule-friday.module": [
@@ -415,15 +414,15 @@ var map = {
 		4
 	],
 	"../pages/schedule-tuesday/schedule-tuesday.module": [
-		740,
+		742,
 		3
 	],
 	"../pages/schedule-wednesday/schedule-wednesday.module": [
-		741,
+		740,
 		2
 	],
 	"../pages/user-register/user-register.module": [
-		742,
+		741,
 		1
 	]
 };
@@ -468,10 +467,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(722);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_class_register_class_register__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_patient_register_patient_register__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_patient_register_patient_register__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2__ = __webpack_require__(723);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_angularfire2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2_auth__ = __webpack_require__(167);
@@ -537,18 +536,18 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/edit-class/edit-class.module#EditClassPageModule', name: 'EditClassPage', segment: 'edit-class', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-patient/edit-patient.module#EditPatientPageModule', name: 'EditPatientPage', segment: 'edit-patient', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/finantial/finantial.module#FinantialPageModule', name: 'FinantialPage', segment: 'finantial', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/patient-register/patient-register.module#PatientRegisterPageModule', name: 'PatientRegisterPage', segment: 'patient-register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/patient-register/patient-register.module#PatientRegisterPageModule', name: 'PatientRegisterPage', segment: 'patient-register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/patient/patient.module#PatientPageModule', name: 'PatientPage', segment: 'patient', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/payment-slip/payment-slip.module#PaymentSlipPageModule', name: 'PaymentSlipPage', segment: 'payment-slip', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/pdf-make/pdf-make.module#PdfMakePageModule', name: 'PdfMakePage', segment: 'pdf-make', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reminder/reminder.module#ReminderPageModule', name: 'ReminderPage', segment: 'reminder', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/pdf-make/pdf-make.module#PdfMakePageModule', name: 'PdfMakePage', segment: 'pdf-make', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-friday/schedule-friday.module#ScheduleFridayPageModule', name: 'ScheduleFridayPage', segment: 'schedule-friday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-monday/schedule-monday.module#ScheduleMondayPageModule', name: 'ScheduleMondayPage', segment: 'schedule-monday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-thursday/schedule-thursday.module#ScheduleThursdayPageModule', name: 'ScheduleThursdayPage', segment: 'schedule-thursday', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/schedule-tuesday/schedule-tuesday.module#ScheduleTuesdayPageModule', name: 'ScheduleTuesdayPage', segment: 'schedule-tuesday', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/schedule-wednesday/schedule-wednesday.module#ScheduleWednesdayPageModule', name: 'ScheduleWednesdayPage', segment: 'schedule-wednesday', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-register/user-register.module#UserRegisterPageModule', name: 'UserRegisterPage', segment: 'user-register', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-register/user-register.module#UserRegisterPageModule', name: 'UserRegisterPage', segment: 'user-register', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/schedule-tuesday/schedule-tuesday.module#ScheduleTuesdayPageModule', name: 'ScheduleTuesdayPage', segment: 'schedule-tuesday', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["b" /* HttpModule */],
@@ -660,8 +659,8 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_patient_register_patient_register__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_patient_register_patient_register__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_reminder_reminder__ = __webpack_require__(97);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

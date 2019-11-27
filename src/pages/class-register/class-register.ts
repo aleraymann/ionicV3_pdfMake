@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
@@ -32,8 +32,8 @@ export class ClassRegisterPage {
     public http: Http,
   ) {
     this.ClassForm = this.formBuilder.group({
-      day: [false],
-      hour: [],
+      day: [null,[Validators.required]],
+      hour: [null,[Validators.required]],
       p1: [null],
       p2: [null],
       p3: [null],

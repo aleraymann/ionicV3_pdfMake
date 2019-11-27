@@ -66,7 +66,7 @@ export class LoginPage {
         else if (error.code == 'auth/wrong-password') { this.alert("Senha Incorreta."); }
       })
   }
-  /*
+
   //---------------------------------------------- LOGIN_Google
   logarComGoogle() {
     this.fire.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -78,7 +78,7 @@ export class LoginPage {
         });
         toast.present();
       })
-  }*/
+  }
 
   //---------------------------------------------- Reset_Password
   resetPassword() {

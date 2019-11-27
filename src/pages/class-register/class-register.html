@@ -13,20 +13,22 @@
 <ion-content padding>
   <form [formGroup]="ClassForm">
     <ion-list>
-      <h4>Dia</h4>
-      <ion-select interface="popover" formControlName="day" placeholder="Selecione o dia">
-        <ion-option value="monday">Segunda-Feira</ion-option>
-        <ion-option value="tuesday">Terça-Feira</ion-option>
-        <ion-option value="wednesday">Quarta-Feira</ion-option>
-        <ion-option value="thursday">Quinta-Feira</ion-option>
-        <ion-option value="friday">Sexta-Feira</ion-option>
-      </ion-select>
-      <hr>
+        <h4>Dia</h4>
       <ion-item>
-        <ion-label>Horário</ion-label>
-        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="hour"></ion-datetime>">
+        <ion-select interface="popover" formControlName="day" placeholder="Selecione o dia">
+          <ion-option value="monday">Segunda-Feira</ion-option>
+          <ion-option value="tuesday">Terça-Feira</ion-option>
+          <ion-option value="wednesday">Quarta-Feira</ion-option>
+          <ion-option value="thursday">Quinta-Feira</ion-option>
+          <ion-option value="friday">Sexta-Feira</ion-option>
+        </ion-select>
       </ion-item>
-
+      
+      <h4>Horário</h4>
+      <ion-item>
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" placeholder="Selecione o horario"formControlName="hour"></ion-datetime>">
+      </ion-item>
+      <hr>
       <div>
         <h4>Pacientes</h4>
         <ion-item>
@@ -66,7 +68,7 @@
 
     </ion-list>
     <div padding>
-      <button ion-button block type="submit" (click)="save()">Salvar</button>
+      <button ion-button block type="submit" [disabled]="!ClassForm.valid" (click)="save()">Salvar</button>
     </div>
   </form>
 </ion-content>

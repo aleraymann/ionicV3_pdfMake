@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 735:
+/***/ 736:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -140,6 +140,7 @@ var PdfMakePage = /** @class */ (function () {
             return data[i];
         });
         this.Patients.sort(function (a, b) { return (a.name < b.name) ? -1 : 1; });
+        this.patient_list = JSON.stringify(data, null, " ");
     };
     //--------------------------------------------------PDF_GENERATE
     PdfMakePage.prototype.createPdf = function () {
@@ -153,19 +154,16 @@ var PdfMakePage = /** @class */ (function () {
                 this.usuario.email,
                 { text: this.letterObj.text, style: 'story', margin: [0, 20, 0, 20] },
                 [
-                    'Total Recebido: ' + this.received,
+                    'Total Recebido: R$: ' + this.received,
                     '--------------------------------',
-                    'Total em Aberto: ' + this.toReceive,
+                    'Total em Aberto: R$: ' + this.toReceive,
                     '--------------------------------',
-                    'Total a Receber: ' + this.totalReceive,
+                    'Total a Receber: R$: ' + this.totalReceive,
                     '---------------------------------',
-                    //this.Patients.forEach (data [this.dataName, Patients);  
-                    /*this.patient.forEach(element => {
-                      console.log(element.name, element.payment)
-                      return element.name;
-                    })*/
+                    '',
                     'Pacientes: ',
-                    this.dataName + ": " + this.dataValue + " - " + (this.dataPay != false ? 'Pago' : 'Em Aberto'),
+                    /*this.dataName + ": " + this.dataValue + " - " + (this.dataPay != false ? 'Pago' : 'Em Aberto'),*/
+                    this.patient_list,
                 ]
             ],
             styles: {

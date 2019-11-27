@@ -41,9 +41,8 @@ export class PatientRegisterPage {
 
      this.PatientForm = this.formBuilder.group({
       name: [null,[Validators.required, Validators.minLength(5)]],
-      email: [null],
+      email: [null,[Validators.email]],
       phone: [null,[Validators.required]],
-      //cpf: [null,[Validators.required]],
       value_payment: [null,[Validators.required]],
       begin: [null,[Validators.required]],
       payment:[false],

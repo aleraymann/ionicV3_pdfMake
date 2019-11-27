@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 
@@ -56,13 +56,12 @@ export class EditPatientPage {
 
 
     this.PatientForm = this.formBuilder.group({
-      name: [this.navParams.get('name')],
-      email: [this.navParams.get('email')],
-      phone: [this.navParams.get('phone')],
-      value_payment: [this.navParams.get('value_payment')],
-      begin: [this.navParams.get('begin')],
+      name: [this.navParams.get('name'),[Validators.required, Validators.minLength(5)]],
+      email: [this.navParams.get('email'),[Validators.email]],
+      phone: [this.navParams.get('phone'),[Validators.required,Validators.minLength(11),Validators.maxLength(15)]],
+      value_payment: [this.navParams.get('value_payment'),[Validators.required]],
+      begin: [this.navParams.get('begin'),[Validators.required]],
       payment: [this.navParams.get('payment')]
-
     })
   }
 
